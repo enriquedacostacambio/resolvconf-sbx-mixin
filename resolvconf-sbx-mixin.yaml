@@ -1,0 +1,18 @@
+# syntax=docker/sandbox-kit:3
+schemaVersion: "3"
+kind: mixin
+displayName: resolvconf client mixin
+dockerfile: Dockerfile
+
+args:
+  resolvconf_install_mode:
+    default: force
+    enum: [force, none]
+
+provides: ["resolvconf@0.0.1"]
+
+capabilities:
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        - command: /opt/resolvconf-sbx-mixin/install.sh "${{ kit.args.resolvconf_install_mode }}"
