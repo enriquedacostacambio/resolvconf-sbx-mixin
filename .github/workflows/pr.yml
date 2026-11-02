@@ -19,4 +19,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
     - name: Build and publish the Docker image
-      run: ./build.sh pr.${{ github.event.number }} --push
+      run: |
+          BUILD_ARGS=""
+          if [[ "${{ contains(github.event.pull_request.body, '!/push') }}" == "true" ]]; then
+            BUILD_ARGS="${BUILD_ARGS} --push"
+          fi
+          ./build.sh pr.${{ github.event.number }} ${BUILD_ARGS}
