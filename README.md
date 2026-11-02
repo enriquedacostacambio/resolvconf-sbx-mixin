@@ -9,14 +9,13 @@ sbx run shell \
 	--kit docker.io/enriquedacostacambio/resolvconf-sbx-mixin:0.0.1
 ```
 
-## Publish
+## Build
 
 ```sh
-./publish.sh
+./build.sh x.y.z
 ```
-To use the git tag name as the docker tag
 
+To publsh:
 ```sh
-./publish.sh x.y.z
+./build.sh x.y.z --push
 ```
-To specify a docker tag.
