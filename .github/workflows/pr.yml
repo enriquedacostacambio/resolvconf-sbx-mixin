@@ -5,6 +5,9 @@ on:
     types: [opened, reopened, synchronize, edited]
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     environment: build
